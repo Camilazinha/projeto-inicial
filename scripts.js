@@ -17,8 +17,20 @@ function alertar(event){
 
     const url = `http://viacep.com.br/ws/${cep.value}/json`;
     fetch(url)
-    .then(resposta=>resposta.json())
-    .then(dados=>alert.json(dados.bairro))
+    .then(function(resposta){
+        return resposta.json()
+    })
+
+    .then(function(dados){
+        logradouro.value = dados.logradouro;
+        bairro.value = dados.bairro;
+        cidade.value = dados.localidade;
+        estado.value = dados.uf;
+    })
+
+}
+
+function saidaDeDados(){
 
     saida.innerText = "Nome: " + nome.value + 
     "\n Email: " + email.value +
